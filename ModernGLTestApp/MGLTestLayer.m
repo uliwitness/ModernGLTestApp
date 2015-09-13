@@ -80,9 +80,13 @@
     }
     
     GLfloat vertices[] = {
-         0.0f,  0.5f, 1.0, 0.0, 0.0, // Vertex 1 (X, Y, R, G, B)
-         0.5f, -0.5f, 0.0, 0.0, 1.0, // Vertex 2 (X, Y, R, G, B)
-        -0.5f, -0.5f, 0.0, 1.0, 1.0, // Vertex 3 (X, Y, R, G, B)
+        -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // Top-left
+         0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // Top-right
+         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
+
+         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
+        -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, // Bottom-left
+        -0.5f,  0.5f, 1.0f, 0.0f, 0.0f  // Top-left
     };
 	
     if( !_vbo )
@@ -115,7 +119,7 @@
     currVal = currVal -(long)currVal;
     glUniform3f( _triangleColor, sin(currVal * M_PI), 0, 0 );
     
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays( GL_TRIANGLES, 0, 6 );
     MGLLogIfError();
 	
 	// Call super to finalize the drawing.
