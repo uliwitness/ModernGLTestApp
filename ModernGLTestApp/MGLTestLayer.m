@@ -24,6 +24,7 @@
     MGLVertexArrayObject*   _vao;
     MGLVertexBufferObject*  _vbo;
     GLint                   _posAttrib;
+    GLint                   _colorAttrib;
     GLint                   _triangleColor;
 }
 
@@ -70,6 +71,7 @@
     
     _triangleColor = [_program uniformNamed: "triangleColor"];
     _posAttrib = [_program attributeNamed: "position"];
+    _colorAttrib = [_program attributeNamed: "color"];
 
     if( !_vao )
     {
@@ -77,20 +79,25 @@
         [_vao bind];
     }
     
-    float vertices[] = {
-         0.0f,  0.5f, // Vertex 1 (X, Y)
-         0.5f, -0.5f, // Vertex 2 (X, Y)
-        -0.5f, -0.5f  // Vertex 3 (X, Y)
+    GLfloat vertices[] = {
+         0.0f,  0.5f, 1.0, 0.0, 0.0, // Vertex 1 (X, Y, R, G, B)
+         0.5f, -0.5f, 0.0, 0.0, 1.0, // Vertex 2 (X, Y, R, G, B)
+        -0.5f, -0.5f, 0.0, 1.0, 1.0, // Vertex 3 (X, Y, R, G, B)
     };
 	
     if( !_vbo )
     {
-        _vbo = [MGLVertexBufferObject vertexBufferObjectWithVertices: vertices size: sizeof(vertices) usage:GL_STATIC_DRAW];
+        _vbo = [MGLVertexBufferObject vertexBufferObjectWithVertices: vertices size: sizeof(vertices) usage: GL_STATIC_DRAW];
     }
     
     glEnableVertexAttribArray( _posAttrib );
     MGLLogIfError();
-    glVertexAttribPointer( _posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0 );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
+    glVertexAttribPointer( _posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), NULL );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
+    MGLLogIfError();
+    
+    glEnableVertexAttribArray( _colorAttrib );
+    MGLLogIfError();
+    glVertexAttribPointer( _colorAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)) );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
     MGLLogIfError();
 
     [_program use];
