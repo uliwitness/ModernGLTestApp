@@ -11,11 +11,11 @@
 
 @interface MGLShader : NSObject
 
-+(instancetype) shaderFromResource: (NSString*)inFilename;
-+(instancetype) shaderFromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle;
++(instancetype) shaderWithType: (GLenum)inType fromResource: (NSString*)inFilename;
++(instancetype) shaderWithType: (GLenum)inType fromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle;
 
--(instancetype) initFromResource: (NSString*)inFilename;
--(instancetype) initFromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle;
+-(instancetype) initWithType: (GLenum)inType fromResource: (NSString*)inFilename;
+-(instancetype) initWithType: (GLenum)inType fromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle;
 -(instancetype) initWithID: (GLuint)inID NS_DESIGNATED_INITIALIZER;
 
 @property (assign,readonly) GLuint      id;

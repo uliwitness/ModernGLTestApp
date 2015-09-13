@@ -13,11 +13,17 @@
 #import "MGLShader.h"
 #import "MGLVertexArrayObject.h"
 #import "MGLVertexBufferObject.h"
+#import "MGLMacros.h"
 
 
 @interface MGLTestLayer ()
 {
-    
+    MGLProgram*             _program;
+    MGLShader*              _vertexShader;
+    MGLShader*              _fragmentShader;
+    MGLVertexArrayObject*   _vao;
+    MGLVertexBufferObject*  _vbo;
+    GLint                   _posAttrib;
 }
 
 @end
@@ -38,13 +44,30 @@
 
 -(void)	dealloc
 {
-	
+    glDeleteProgram( _program.id );
+    
+    GLuint  buffer = _vbo.id;
+    glDeleteBuffers( 1, &buffer);
+    
+    buffer = _vao.id;
+    glDeleteVertexArrays( 1, &buffer);
 }
 
 
 -(void) mgl_setupContext
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor( 0.0, 0.0, 0.0, 1.0 );
+
+    _vertexShader = [MGLShader shaderWithType: GL_VERTEX_SHADER fromResource: @"MainVertexShader"];
+    _fragmentShader = [MGLShader shaderWithType: GL_FRAGMENT_SHADER fromResource: @"MainFragmentShader"];
+    _fragmentShader.colorNumber = 0;
+    _fragmentShader.fragmentDataLocationName = @"outColor";
+    _program = [MGLProgram program];
+    [_program attachShader: _vertexShader];
+    [_program attachShader: _fragmentShader];
+    [_program link];
+
+    _posAttrib = glGetAttribLocation( _program.id, "position" );
 }
 
 
@@ -53,15 +76,15 @@
 {
     CGLSetCurrentContext( ctx );
     
-    [self mgl_setupContext];
-    
-	glClearColor( 0.0, 0.0, 0.0, 1.0 );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	glMatrixMode( GL_MODELVIEW );
-	glLoadIdentity();
-	glPushMatrix();
-
-    [self mgl_setupContext];
+	
+    [_program use];
+    
+    if( !_vao )
+    {
+        _vao = [MGLVertexArrayObject vertexArrayObject];
+        [_vao bind];
+    }
     
     float vertices[] = {
          0.0f,  0.5f, // Vertex 1 (X, Y)
@@ -69,41 +92,21 @@
         -0.5f, -0.5f  // Vertex 3 (X, Y)
     };
 	
-    MGLVertexArrayObject*   vao = [MGLVertexArrayObject vertexArrayObject];
-    [vao bind];
+    if( !_vbo )
+    {
+        _vbo = [MGLVertexBufferObject vertexBufferObjectWithVertices: vertices size: sizeof(vertices) usage:GL_STATIC_DRAW];
+    }
     
-    MGLVertexBufferObject*  vbo = [MGLVertexBufferObject vertexBufferObjectWithVertices: vertices size: sizeof(vertices) usage:GL_STATIC_DRAW];
-    
-    MGLShader* vertexShader = [MGLShader shaderFromResource: @"MainVertexShader"];
-    MGLShader* fragmentShader = [MGLShader shaderFromResource: @"MainFragmentShader"];
-    fragmentShader.colorNumber = 0;
-    fragmentShader.fragmentDataLocationName = @"outColor";
-    MGLProgram* program = [MGLProgram program];
-    [program attachShader: vertexShader];
-    [program attachShader: fragmentShader];
-    [program link];
-    [program use];
-    
-    GLint posAttrib = glGetAttribLocation( program.id, "position" );
-    glVertexAttribPointer( posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0 );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
-    glEnableVertexAttribArray(posAttrib);
+    glEnableVertexAttribArray( _posAttrib );
+    MGLLogIfError();
+    glVertexAttribPointer( _posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0 );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
+    MGLLogIfError();
     
     glDrawArrays(GL_TRIANGLES, 0, 3);
-
-	glPopMatrix();
+    MGLLogIfError();
 	
 	// Call super to finalize the drawing.
 	[super drawInCGLContext: ctx pixelFormat: pf forLayerTime: t displayTime: ts];
-    
-    glDeleteProgram( program.id );
-    glDeleteShader( vertexShader.id );
-    glDeleteShader( fragmentShader.id );
-    
-    GLuint  buffer = vbo.id;
-    glDeleteBuffers( 1, &buffer);
-    
-    buffer = vao.id;
-    glDeleteVertexArraysAPPLE( 1, &buffer);
 }
 
 
@@ -129,7 +132,18 @@
         NSLog( @"CGLChoosePixelFormat gave error %d", err );
     
     return pixelFormat;
+}
 
+
+-(CGLContextObj)    copyCGLContextForPixelFormat:(CGLPixelFormatObj)pf
+{
+    CGLContextObj   context = [super copyCGLContextForPixelFormat: pf];
+    CGLContextObj   oldContext = CGLGetCurrentContext();
+    CGLSetCurrentContext( context );
+    [self mgl_setupContext];
+    CGLSetCurrentContext( oldContext );
+    
+    return context;
 }
 
 @end

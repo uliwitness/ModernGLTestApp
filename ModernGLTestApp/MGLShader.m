@@ -13,31 +13,31 @@
 
 @implementation MGLShader
 
-+(instancetype) shaderFromResource: (NSString*)inFilename
++(instancetype) shaderWithType: (GLenum)inType fromResource: (NSString*)inFilename
 {
-    MGLShader*  shader = [[self.class alloc] initFromResource: inFilename inBundle: NSBundle.mainBundle];
+    MGLShader*  shader = [[self.class alloc] initWithType: inType fromResource: inFilename inBundle: NSBundle.mainBundle];
     
     return shader;
 }
 
-+(instancetype) shaderFromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
++(instancetype) shaderWithType: (GLenum)inType fromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
 {
-    MGLShader*  shader = [[self.class alloc] initFromResource: inFilename inBundle: theBundle];
+    MGLShader*  shader = [[self.class alloc] initWithType: inType fromResource: inFilename inBundle: theBundle];
     
     return shader;
 }
 
 
--(instancetype) initFromResource: (NSString*)inFilename
+-(instancetype) initWithType: (GLenum)inType fromResource: (NSString*)inFilename
 {
-    MGLShader*  shader = [self initFromResource: inFilename inBundle: NSBundle.mainBundle];
+    MGLShader*  shader = [self initWithType: inType fromResource: inFilename inBundle: NSBundle.mainBundle];
     
     return shader;
 }
 
--(instancetype) initFromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
+-(instancetype) initWithType: (GLenum)inType fromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
 {
-    GLuint theID = glCreateShader(GL_VERTEX_SHADER);
+    GLuint theID = glCreateShader(inType);
     const char* const mainVertexShaderSource = [NSString stringWithContentsOfURL: [theBundle URLForResource: inFilename withExtension: @"glsl"] encoding: NSUTF8StringEncoding error: NULL].UTF8String;
     glShaderSource(theID, 1, &mainVertexShaderSource, NULL);
     MGLLogIfError();

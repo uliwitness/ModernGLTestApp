@@ -77,6 +77,33 @@
     
     glLinkProgram( _id );
     MGLLogIfError();
+    
+    GLint logLength;
+
+    glGetProgramiv( _id, GL_INFO_LOG_LENGTH, &logLength );
+    MGLLogIfError();
+
+    if( logLength > 0 )
+    {
+        NSMutableData* logObj = [NSMutableData dataWithLength: logLength];
+        glGetProgramInfoLog( _id, logLength, &logLength, logObj.mutableBytes );
+        MGLLogIfError();
+    }
+
+    GLint status;
+    glGetProgramiv( _id, GL_LINK_STATUS, &status);
+    MGLLogIfError();
+
+    if( status == GL_FALSE )
+    {
+        NSLog( @"Link status is false." );
+    }
+
+    for( MGLShader* currShader in _shaders )
+    {
+        glDeleteShader( currShader.id );
+        MGLLogIfError();
+    }
 }
 
 
