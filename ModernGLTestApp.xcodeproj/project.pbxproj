@@ -13,7 +13,13 @@
 		5509A04B1BA5927A000B3F1B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0491BA5927A000B3F1B /* MainMenu.xib */; };
 		5509A0571BA5927A000B3F1B /* ModernGLTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0561BA5927A000B3F1B /* ModernGLTestAppTests.m */; };
 		5509A0641BA592C1000B3F1B /* MGLTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0601BA592C1000B3F1B /* MGLTestView.m */; };
-		5509A0651BA592C1000B3F1B /* MGLTestLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0621BA592C1000B3F1B /* MGLTestLayer.mm */; };
+		5509A0651BA592C1000B3F1B /* MGLTestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0621BA592C1000B3F1B /* MGLTestLayer.m */; };
+		5509A0671BA59BA1000B3F1B /* MainVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0661BA59BA1000B3F1B /* MainVertexShader.glsl */; };
+		5509A0691BA59C40000B3F1B /* MainFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0681BA59C40000B3F1B /* MainFragmentShader.glsl */; };
+		5509A06C1BA59E3C000B3F1B /* MGLShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A06B1BA59E3C000B3F1B /* MGLShader.m */; };
+		5509A06F1BA5A130000B3F1B /* MGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A06E1BA5A130000B3F1B /* MGLProgram.m */; };
+		5509A0721BA5A720000B3F1B /* MGLVertexArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */; };
+		5509A0751BA5A948000B3F1B /* MGLVertexBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +45,19 @@
 		5509A0561BA5927A000B3F1B /* ModernGLTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModernGLTestAppTests.m; sourceTree = "<group>"; };
 		5509A0601BA592C1000B3F1B /* MGLTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLTestView.m; sourceTree = "<group>"; };
 		5509A0611BA592C1000B3F1B /* MGLTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTestView.h; sourceTree = "<group>"; };
-		5509A0621BA592C1000B3F1B /* MGLTestLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MGLTestLayer.mm; sourceTree = "<group>"; };
+		5509A0621BA592C1000B3F1B /* MGLTestLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLTestLayer.m; sourceTree = "<group>"; };
 		5509A0631BA592C1000B3F1B /* MGLTestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTestLayer.h; sourceTree = "<group>"; };
+		5509A0661BA59BA1000B3F1B /* MainVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MainVertexShader.glsl; sourceTree = "<group>"; };
+		5509A0681BA59C40000B3F1B /* MainFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MainFragmentShader.glsl; sourceTree = "<group>"; };
+		5509A06A1BA59E3C000B3F1B /* MGLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLShader.h; sourceTree = "<group>"; };
+		5509A06B1BA59E3C000B3F1B /* MGLShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLShader.m; sourceTree = "<group>"; };
+		5509A06D1BA5A130000B3F1B /* MGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLProgram.h; sourceTree = "<group>"; };
+		5509A06E1BA5A130000B3F1B /* MGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLProgram.m; sourceTree = "<group>"; };
+		5509A0701BA5A720000B3F1B /* MGLVertexArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLVertexArrayObject.h; sourceTree = "<group>"; };
+		5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLVertexArrayObject.m; sourceTree = "<group>"; };
+		5509A0731BA5A948000B3F1B /* MGLVertexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLVertexBufferObject.h; sourceTree = "<group>"; };
+		5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLVertexBufferObject.m; sourceTree = "<group>"; };
+		5509A0761BA5AC39000B3F1B /* MGLMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGLMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +101,21 @@
 			children = (
 				5509A0421BA5927A000B3F1B /* AppDelegate.h */,
 				5509A0431BA5927A000B3F1B /* AppDelegate.m */,
-				5509A0601BA592C1000B3F1B /* MGLTestView.m */,
 				5509A0611BA592C1000B3F1B /* MGLTestView.h */,
-				5509A0621BA592C1000B3F1B /* MGLTestLayer.mm */,
+				5509A0601BA592C1000B3F1B /* MGLTestView.m */,
 				5509A0631BA592C1000B3F1B /* MGLTestLayer.h */,
+				5509A0621BA592C1000B3F1B /* MGLTestLayer.m */,
+				5509A06A1BA59E3C000B3F1B /* MGLShader.h */,
+				5509A06B1BA59E3C000B3F1B /* MGLShader.m */,
+				5509A06D1BA5A130000B3F1B /* MGLProgram.h */,
+				5509A06E1BA5A130000B3F1B /* MGLProgram.m */,
+				5509A0731BA5A948000B3F1B /* MGLVertexBufferObject.h */,
+				5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */,
+				5509A0701BA5A720000B3F1B /* MGLVertexArrayObject.h */,
+				5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */,
+				5509A0761BA5AC39000B3F1B /* MGLMacros.h */,
+				5509A0661BA59BA1000B3F1B /* MainVertexShader.glsl */,
+				5509A0681BA59C40000B3F1B /* MainFragmentShader.glsl */,
 				5509A0471BA5927A000B3F1B /* Images.xcassets */,
 				5509A0491BA5927A000B3F1B /* MainMenu.xib */,
 				5509A0401BA5927A000B3F1B /* Supporting Files */,
@@ -201,7 +229,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5509A0671BA59BA1000B3F1B /* MainVertexShader.glsl in Resources */,
 				5509A0481BA5927A000B3F1B /* Images.xcassets in Resources */,
+				5509A0691BA59C40000B3F1B /* MainFragmentShader.glsl in Resources */,
 				5509A04B1BA5927A000B3F1B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,9 +251,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5509A0641BA592C1000B3F1B /* MGLTestView.m in Sources */,
-				5509A0651BA592C1000B3F1B /* MGLTestLayer.mm in Sources */,
+				5509A0751BA5A948000B3F1B /* MGLVertexBufferObject.m in Sources */,
+				5509A06C1BA59E3C000B3F1B /* MGLShader.m in Sources */,
+				5509A0721BA5A720000B3F1B /* MGLVertexArrayObject.m in Sources */,
+				5509A0651BA592C1000B3F1B /* MGLTestLayer.m in Sources */,
 				5509A0461BA5927A000B3F1B /* main.m in Sources */,
 				5509A0441BA5927A000B3F1B /* AppDelegate.m in Sources */,
+				5509A06F1BA5A130000B3F1B /* MGLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
