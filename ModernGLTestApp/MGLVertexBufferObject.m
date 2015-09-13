@@ -24,15 +24,9 @@
     GLuint  theID;
     glGenBuffers(1, &theID);
 
-    GLfloat vertices[] = {
-        0.0f, 0.5f,
-        0.5f, -0.5f,
-        -0.5f, -0.5f
-    };
-
     glBindBuffer(GL_ARRAY_BUFFER, theID);
     MGLLogIfError();
-    glBufferData(GL_ARRAY_BUFFER, inSize, vertices, inUsage);
+    glBufferData(GL_ARRAY_BUFFER, inSize, inVertices, inUsage);
     MGLLogIfError();
     
     return [self initWithID: theID];
