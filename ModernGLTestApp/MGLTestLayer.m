@@ -56,7 +56,7 @@
 
 -(void) mgl_setupContext
 {
-	glClearColor( 0.0, 0.0, 0.0, 1.0 );
+	glClearColor( 0.0, 0.0, 0.0, 0.0 );
 
     _vertexShader = [MGLShader shaderFromResource: @"MainVertexShader.vsh"];
     _fragmentShader = [MGLShader shaderFromResource: @"MainFragmentShader.fsh"];
