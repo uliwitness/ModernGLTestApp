@@ -14,8 +14,8 @@
 		5509A0571BA5927A000B3F1B /* ModernGLTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0561BA5927A000B3F1B /* ModernGLTestAppTests.m */; };
 		5509A0641BA592C1000B3F1B /* MGLTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0601BA592C1000B3F1B /* MGLTestView.m */; };
 		5509A0651BA592C1000B3F1B /* MGLTestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0621BA592C1000B3F1B /* MGLTestLayer.m */; };
-		5509A0671BA59BA1000B3F1B /* MainVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0661BA59BA1000B3F1B /* MainVertexShader.glsl */; };
-		5509A0691BA59C40000B3F1B /* MainFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0681BA59C40000B3F1B /* MainFragmentShader.glsl */; };
+		5509A0671BA59BA1000B3F1B /* MainVertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0661BA59BA1000B3F1B /* MainVertexShader.vsh */; };
+		5509A0691BA59C40000B3F1B /* MainFragmentShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0681BA59C40000B3F1B /* MainFragmentShader.fsh */; };
 		5509A06C1BA59E3C000B3F1B /* MGLShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A06B1BA59E3C000B3F1B /* MGLShader.m */; };
 		5509A06F1BA5A130000B3F1B /* MGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A06E1BA5A130000B3F1B /* MGLProgram.m */; };
 		5509A0721BA5A720000B3F1B /* MGLVertexArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */; };
@@ -47,8 +47,8 @@
 		5509A0611BA592C1000B3F1B /* MGLTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTestView.h; sourceTree = "<group>"; };
 		5509A0621BA592C1000B3F1B /* MGLTestLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLTestLayer.m; sourceTree = "<group>"; };
 		5509A0631BA592C1000B3F1B /* MGLTestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTestLayer.h; sourceTree = "<group>"; };
-		5509A0661BA59BA1000B3F1B /* MainVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MainVertexShader.glsl; sourceTree = "<group>"; };
-		5509A0681BA59C40000B3F1B /* MainFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MainFragmentShader.glsl; sourceTree = "<group>"; };
+		5509A0661BA59BA1000B3F1B /* MainVertexShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MainVertexShader.vsh; sourceTree = "<group>"; };
+		5509A0681BA59C40000B3F1B /* MainFragmentShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MainFragmentShader.fsh; sourceTree = "<group>"; };
 		5509A06A1BA59E3C000B3F1B /* MGLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLShader.h; sourceTree = "<group>"; };
 		5509A06B1BA59E3C000B3F1B /* MGLShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLShader.m; sourceTree = "<group>"; };
 		5509A06D1BA5A130000B3F1B /* MGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLProgram.h; sourceTree = "<group>"; };
@@ -99,25 +99,12 @@
 		5509A03F1BA5927A000B3F1B /* ModernGLTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				5509A0421BA5927A000B3F1B /* AppDelegate.h */,
-				5509A0431BA5927A000B3F1B /* AppDelegate.m */,
-				5509A0611BA592C1000B3F1B /* MGLTestView.h */,
-				5509A0601BA592C1000B3F1B /* MGLTestView.m */,
 				5509A0631BA592C1000B3F1B /* MGLTestLayer.h */,
 				5509A0621BA592C1000B3F1B /* MGLTestLayer.m */,
-				5509A06A1BA59E3C000B3F1B /* MGLShader.h */,
-				5509A06B1BA59E3C000B3F1B /* MGLShader.m */,
-				5509A06D1BA5A130000B3F1B /* MGLProgram.h */,
-				5509A06E1BA5A130000B3F1B /* MGLProgram.m */,
-				5509A0731BA5A948000B3F1B /* MGLVertexBufferObject.h */,
-				5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */,
-				5509A0701BA5A720000B3F1B /* MGLVertexArrayObject.h */,
-				5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */,
-				5509A0761BA5AC39000B3F1B /* MGLMacros.h */,
-				5509A0661BA59BA1000B3F1B /* MainVertexShader.glsl */,
-				5509A0681BA59C40000B3F1B /* MainFragmentShader.glsl */,
+				5509A0661BA59BA1000B3F1B /* MainVertexShader.vsh */,
+				5509A0681BA59C40000B3F1B /* MainFragmentShader.fsh */,
+				5509A0771BA5E8D5000B3F1B /* MGLUtilities */,
 				5509A0471BA5927A000B3F1B /* Images.xcassets */,
-				5509A0491BA5927A000B3F1B /* MainMenu.xib */,
 				5509A0401BA5927A000B3F1B /* Supporting Files */,
 			);
 			path = ModernGLTestApp;
@@ -127,6 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				5509A0411BA5927A000B3F1B /* Info.plist */,
+				5509A0421BA5927A000B3F1B /* AppDelegate.h */,
+				5509A0431BA5927A000B3F1B /* AppDelegate.m */,
+				5509A0491BA5927A000B3F1B /* MainMenu.xib */,
+				5509A0611BA592C1000B3F1B /* MGLTestView.h */,
+				5509A0601BA592C1000B3F1B /* MGLTestView.m */,
 				5509A0451BA5927A000B3F1B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -147,6 +139,22 @@
 				5509A0551BA5927A000B3F1B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5509A0771BA5E8D5000B3F1B /* MGLUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				5509A06A1BA59E3C000B3F1B /* MGLShader.h */,
+				5509A06B1BA59E3C000B3F1B /* MGLShader.m */,
+				5509A06D1BA5A130000B3F1B /* MGLProgram.h */,
+				5509A06E1BA5A130000B3F1B /* MGLProgram.m */,
+				5509A0731BA5A948000B3F1B /* MGLVertexBufferObject.h */,
+				5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */,
+				5509A0701BA5A720000B3F1B /* MGLVertexArrayObject.h */,
+				5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */,
+				5509A0761BA5AC39000B3F1B /* MGLMacros.h */,
+			);
+			name = MGLUtilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +237,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5509A0671BA59BA1000B3F1B /* MainVertexShader.glsl in Resources */,
+				5509A0671BA59BA1000B3F1B /* MainVertexShader.vsh in Resources */,
 				5509A0481BA5927A000B3F1B /* Images.xcassets in Resources */,
-				5509A0691BA59C40000B3F1B /* MainFragmentShader.glsl in Resources */,
+				5509A0691BA59C40000B3F1B /* MainFragmentShader.fsh in Resources */,
 				5509A04B1BA5927A000B3F1B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +455,7 @@
 				5509A05C1BA5927A000B3F1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5509A05D1BA5927A000B3F1B /* Build configuration list for PBXNativeTarget "ModernGLTestAppTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +464,7 @@
 				5509A05F1BA5927A000B3F1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

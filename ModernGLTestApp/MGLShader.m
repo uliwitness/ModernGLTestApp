@@ -13,32 +13,38 @@
 
 @implementation MGLShader
 
-+(instancetype) shaderWithType: (GLenum)inType fromResource: (NSString*)inFilename
++(instancetype) shaderFromResource: (NSString*)inFilename
 {
-    MGLShader*  shader = [[self.class alloc] initWithType: inType fromResource: inFilename inBundle: NSBundle.mainBundle];
+    MGLShader*  shader = [[self.class alloc] initFromResource: inFilename inBundle: NSBundle.mainBundle];
     
     return shader;
 }
 
-+(instancetype) shaderWithType: (GLenum)inType fromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
++(instancetype) shaderFromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
 {
-    MGLShader*  shader = [[self.class alloc] initWithType: inType fromResource: inFilename inBundle: theBundle];
+    MGLShader*  shader = [[self.class alloc] initFromResource: inFilename inBundle: theBundle];
     
     return shader;
 }
 
 
--(instancetype) initWithType: (GLenum)inType fromResource: (NSString*)inFilename
+-(instancetype) initFromResource: (NSString*)inFilename
 {
-    MGLShader*  shader = [self initWithType: inType fromResource: inFilename inBundle: NSBundle.mainBundle];
+    MGLShader*  shader = [self initFromResource: inFilename inBundle: NSBundle.mainBundle];
     
     return shader;
 }
 
--(instancetype) initWithType: (GLenum)inType fromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
+-(instancetype) initFromResource: (NSString*)inFilename inBundle: (NSBundle*)theBundle
 {
+    GLenum      inType = [inFilename.pathExtension isEqualToString: @"fsh"] ? GL_FRAGMENT_SHADER : GL_VERTEX_SHADER;
     GLuint theID = glCreateShader(inType);
-    const char* const mainVertexShaderSource = [NSString stringWithContentsOfURL: [theBundle URLForResource: inFilename withExtension: @"glsl"] encoding: NSUTF8StringEncoding error: NULL].UTF8String;
+    const char* const mainVertexShaderSource = [NSString stringWithContentsOfURL: [theBundle URLForResource: [inFilename stringByDeletingPathExtension] withExtension: [inFilename pathExtension]] encoding: NSUTF8StringEncoding error: NULL].UTF8String;
+    if( mainVertexShaderSource == NULL )
+    {
+        NSLog( @"Couldn't read shader %@", inFilename );
+        return nil;
+    }
     glShaderSource(theID, 1, &mainVertexShaderSource, NULL);
     MGLLogIfError();
     glCompileShader(theID);

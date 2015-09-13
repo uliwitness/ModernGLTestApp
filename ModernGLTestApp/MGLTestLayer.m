@@ -58,8 +58,8 @@
 {
 	glClearColor( 0.0, 0.0, 0.0, 1.0 );
 
-    _vertexShader = [MGLShader shaderWithType: GL_VERTEX_SHADER fromResource: @"MainVertexShader"];
-    _fragmentShader = [MGLShader shaderWithType: GL_FRAGMENT_SHADER fromResource: @"MainFragmentShader"];
+    _vertexShader = [MGLShader shaderFromResource: @"MainVertexShader.vsh"];
+    _fragmentShader = [MGLShader shaderFromResource: @"MainFragmentShader.fsh"];
     _fragmentShader.colorNumber = 0;
     _fragmentShader.fragmentDataLocationName = @"outColor";
     _program = [MGLProgram program];
