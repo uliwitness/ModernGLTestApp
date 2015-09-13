@@ -8,7 +8,7 @@
 
 #import "MGLVertexArrayObject.h"
 #import "MGLMacros.h"
-#import <OpenGL/gl.h>
+#import <OpenGL/gl3.h>
 
 
 @implementation MGLVertexArrayObject
@@ -31,7 +31,7 @@
 -(instancetype) init
 {
     GLuint  theID = 0;
-    glGenVertexArraysAPPLE( 1, &theID );
+    glGenVertexArrays( 1, &theID );
     MGLLogIfError();
     
     return [self initWithID: theID];
@@ -40,7 +40,7 @@
 
 -(void) bind
 {
-    glBindVertexArrayAPPLE( _id );
+    glBindVertexArray( _id );
     MGLLogIfError();
 }
 

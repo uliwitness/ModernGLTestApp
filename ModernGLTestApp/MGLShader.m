@@ -8,7 +8,7 @@
 
 #import "MGLShader.h"
 #import "MGLMacros.h"
-#import <OpenGL/gl.h>
+#import <OpenGL/gl3.h>
 
 
 @implementation MGLShader

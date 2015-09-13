@@ -7,7 +7,7 @@
 //
 
 #import "MGLTestLayer.h"
-#import <OpenGL/gl.h>
+#import <OpenGL/gl3.h>
 #import <OpenGL/OpenGL.h>
 #import "MGLProgram.h"
 #import "MGLShader.h"

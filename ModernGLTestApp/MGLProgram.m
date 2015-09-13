@@ -13,7 +13,7 @@
 #import "MGLProgram.h"
 #import "MGLShader.h"
 #import "MGLMacros.h"
-#import <OpenGL/gl.h>
+#import <OpenGL/gl3.h>
 
 
 @interface MGLProgram ()
@@ -70,7 +70,7 @@
     {
         if( currShader.fragmentDataLocationName )
         {
-            glBindFragDataLocationEXT( _id, currShader.colorNumber, currShader.fragmentDataLocationName.UTF8String );
+            glBindFragDataLocation( _id, currShader.colorNumber, currShader.fragmentDataLocationName.UTF8String );
             MGLLogIfError();
         }
     }
