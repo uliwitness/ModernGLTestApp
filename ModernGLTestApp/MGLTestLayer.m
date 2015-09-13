@@ -107,23 +107,29 @@
 }
 
 
--(CGLPixelFormatObj)	copyCGLPixelFormatForDisplayMask: (uint32_t)mask
+- (CGLPixelFormatObj)copyCGLPixelFormatForDisplayMask:(uint32_t)mask
 {
 	CGLPixelFormatObj		pixelFormat = NULL;
 	GLint					numPixelFormats = 0;
-	CGLPixelFormatAttribute	attrib[] = {
-		kCGLPFANoRecovery,
-		kCGLPFAAccelerated,
-		kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
-		kCGLPFADoubleBuffer,
+    CGLPixelFormatAttribute attribs[] =  {
+        kCGLPFADisplayMask, (CGLPixelFormatAttribute)0,
+        kCGLPFAColorSize, (CGLPixelFormatAttribute)24,
+        kCGLPFAAlphaSize, (CGLPixelFormatAttribute)8,
+        kCGLPFAAccelerated,
+        kCGLPFADoubleBuffer,
+        kCGLPFAAllowOfflineRenderers,
         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
-		(CGLPixelFormatAttribute)0
-	};
-	CGLError err = CGLChoosePixelFormat( attrib, &pixelFormat, &numPixelFormats );
+        0
+    };
+    attribs[1] = mask;
+
+    
+    CGLError err = CGLChoosePixelFormat(attribs, &pixelFormat, &numPixelFormats);
     if( err != kCGLNoError )
         NSLog( @"CGLChoosePixelFormat gave error %d", err );
+    
+    return pixelFormat;
 
-	return pixelFormat;
 }
 
 @end
