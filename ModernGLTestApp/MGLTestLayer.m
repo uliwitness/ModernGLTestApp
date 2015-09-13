@@ -13,6 +13,7 @@
 #import "MGLShader.h"
 #import "MGLVertexArrayObject.h"
 #import "MGLVertexBufferObject.h"
+#import "MGLTexture.h"
 #import "MGLMacros.h"
 
 
@@ -27,6 +28,8 @@
     GLint                   _colorAttrib;
     GLint                   _triangleColor;
     GLuint                  _ebo;
+    GLuint                  _texAttrib;
+    MGLTexture          *   _tex;
 }
 
 @end
@@ -73,6 +76,7 @@
     _triangleColor = [_program uniformNamed: "triangleColor"];
     _posAttrib = [_program attributeNamed: "position"];
     _colorAttrib = [_program attributeNamed: "color"];
+    _texAttrib = [_program attributeNamed: "texcoord"];
 
     if( !_vao )
     {
@@ -81,16 +85,21 @@
     }
     
     GLfloat vertices[] = {
-        -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // Top-left
-         0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // Top-right
-         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
-        -0.5f, -0.5f, 1.0f, 1.0f, 1.0f  // Bottom-left
+        //  Position      Color             Texcoords
+        -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
+         0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
+         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
+        -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
     };
     
     GLuint elements[] = {
         0, 1, 2,
         2, 3, 0
     };
+    
+    _tex = [MGLTexture textureFromResource: @"sample"];
+    [_tex bind];
+    glGenerateMipmap( GL_TEXTURE_2D );
     
     glGenBuffers( 1, &_ebo );
 
@@ -104,13 +113,16 @@
     
     glEnableVertexAttribArray( _posAttrib );
     MGLLogIfError();
-    glVertexAttribPointer( _posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), NULL );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
+    glVertexAttribPointer( _posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), NULL );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
     MGLLogIfError();
     
     glEnableVertexAttribArray( _colorAttrib );
     MGLLogIfError();
-    glVertexAttribPointer( _colorAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)) );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
+    glVertexAttribPointer( _colorAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)) );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
     MGLLogIfError();
+    
+    glEnableVertexAttribArray( _texAttrib );
+    glVertexAttribPointer( _texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)) );
 
     [_program use];
 }

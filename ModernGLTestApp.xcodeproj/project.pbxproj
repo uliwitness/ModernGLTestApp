@@ -20,6 +20,8 @@
 		5509A06F1BA5A130000B3F1B /* MGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A06E1BA5A130000B3F1B /* MGLProgram.m */; };
 		5509A0721BA5A720000B3F1B /* MGLVertexArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */; };
 		5509A0751BA5A948000B3F1B /* MGLVertexBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */; };
+		5509A07A1BA61045000B3F1B /* MGLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0791BA61045000B3F1B /* MGLTexture.m */; };
+		5509A07E1BA617BC000B3F1B /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509A07D1BA617BC000B3F1B /* sample.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		5509A0731BA5A948000B3F1B /* MGLVertexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLVertexBufferObject.h; sourceTree = "<group>"; };
 		5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLVertexBufferObject.m; sourceTree = "<group>"; };
 		5509A0761BA5AC39000B3F1B /* MGLMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGLMacros.h; sourceTree = "<group>"; };
+		5509A0781BA61045000B3F1B /* MGLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTexture.h; sourceTree = "<group>"; };
+		5509A0791BA61045000B3F1B /* MGLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLTexture.m; sourceTree = "<group>"; };
+		5509A07D1BA617BC000B3F1B /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +125,7 @@
 				5509A0611BA592C1000B3F1B /* MGLTestView.h */,
 				5509A0601BA592C1000B3F1B /* MGLTestView.m */,
 				5509A0451BA5927A000B3F1B /* main.m */,
+				5509A07D1BA617BC000B3F1B /* sample.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,6 +158,8 @@
 				5509A0741BA5A948000B3F1B /* MGLVertexBufferObject.m */,
 				5509A0701BA5A720000B3F1B /* MGLVertexArrayObject.h */,
 				5509A0711BA5A720000B3F1B /* MGLVertexArrayObject.m */,
+				5509A0781BA61045000B3F1B /* MGLTexture.h */,
+				5509A0791BA61045000B3F1B /* MGLTexture.m */,
 				5509A0761BA5AC39000B3F1B /* MGLMacros.h */,
 			);
 			name = MGLUtilities;
@@ -241,6 +249,7 @@
 				5509A0481BA5927A000B3F1B /* Images.xcassets in Resources */,
 				5509A0691BA59C40000B3F1B /* MainFragmentShader.fsh in Resources */,
 				5509A04B1BA5927A000B3F1B /* MainMenu.xib in Resources */,
+				5509A07E1BA617BC000B3F1B /* sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +275,7 @@
 				5509A0461BA5927A000B3F1B /* main.m in Sources */,
 				5509A0441BA5927A000B3F1B /* AppDelegate.m in Sources */,
 				5509A06F1BA5A130000B3F1B /* MGLProgram.m in Sources */,
+				5509A07A1BA61045000B3F1B /* MGLTexture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
