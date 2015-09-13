@@ -25,6 +25,9 @@
 
 -(void) attachShader: (MGLShader*)inShader; // Add a shader.
 
+-(GLint)   uniformNamed: (const char*)inName;   // Get the ID of a "global" which shaders can access.
+-(GLint)   attributeNamed: (const char*)inName; // Get the slot used for a named input the shaders can access.
+
 -(void) link;   // Commit changes made to this program.
 
 -(void) use;

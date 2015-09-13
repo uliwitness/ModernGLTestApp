@@ -113,4 +113,16 @@
     MGLLogIfError();
 }
 
+
+-(GLint)   uniformNamed: (const char*)inName
+{
+    return glGetUniformLocation( _id, inName );
+}
+
+
+-(GLint)   attributeNamed: (const char*)inName
+{
+    return glGetAttribLocation( _id, inName );
+}
+
 @end

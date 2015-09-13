@@ -24,6 +24,7 @@
     MGLVertexArrayObject*   _vao;
     MGLVertexBufferObject*  _vbo;
     GLint                   _posAttrib;
+    GLint                   _triangleColor;
 }
 
 @end
@@ -36,7 +37,7 @@
 	self = [super init];
 	if( self )
 	{
-		
+		self.asynchronous = YES;
 	}
 	return self;
 }
@@ -66,20 +67,10 @@
     [_program attachShader: _vertexShader];
     [_program attachShader: _fragmentShader];
     [_program link];
-
-    _posAttrib = glGetAttribLocation( _program.id, "position" );
-}
-
-
--(void)	drawInCGLContext: (CGLContextObj)ctx pixelFormat: (CGLPixelFormatObj)pf
-		forLayerTime: (CFTimeInterval)t displayTime: (const CVTimeStamp *)ts
-{
-    CGLSetCurrentContext( ctx );
     
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	
-    [_program use];
-    
+    _triangleColor = [_program uniformNamed: "triangleColor"];
+    _posAttrib = [_program attributeNamed: "position"];
+
     if( !_vao )
     {
         _vao = [MGLVertexArrayObject vertexArrayObject];
@@ -101,6 +92,21 @@
     MGLLogIfError();
     glVertexAttribPointer( _posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0 );   // Tell OpenGL how to lay out "position" in the shader's input. Operates on & remembers the current VBO.
     MGLLogIfError();
+
+    [_program use];
+}
+
+
+-(void)	drawInCGLContext: (CGLContextObj)ctx pixelFormat: (CGLPixelFormatObj)pf
+		forLayerTime: (CFTimeInterval)t displayTime: (const CVTimeStamp *)ts
+{
+    CGLSetCurrentContext( ctx );
+    
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	
+    float   currVal = t; // (t / 10.0);
+    currVal = currVal -(long)currVal;
+    glUniform3f( _triangleColor, sin(currVal * M_PI), 0, 0 );
     
     glDrawArrays(GL_TRIANGLES, 0, 3);
     MGLLogIfError();
