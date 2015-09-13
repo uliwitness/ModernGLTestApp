@@ -76,10 +76,15 @@
     MGLLogIfError();
     glBindTexture( GL_TEXTURE_2D, theID );
     MGLLogIfError();
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     MGLLogIfError();
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    MGLLogIfError();
+    
+    NSInteger   bitsPerSample = [bitmap bitsPerSample];
  
-    if( ![bitmap isPlanar] && (samplesPerPixel == 3 || samplesPerPixel == 4))
+    if( ![bitmap isPlanar] && (samplesPerPixel == 3 || samplesPerPixel == 4) && bitsPerSample == 8 )
     {
         glTexImage2D(GL_TEXTURE_2D,
                      0,

@@ -138,6 +138,7 @@
     float   currVal = t; // (t / 10.0);
     currVal = currVal -(long)currVal;
     glUniform3f( _triangleColor, sin(currVal * M_PI), 0, 0 );
+    [_tex bind];
     
     glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
     MGLLogIfError();
