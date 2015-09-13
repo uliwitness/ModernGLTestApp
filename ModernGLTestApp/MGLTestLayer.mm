@@ -11,6 +11,13 @@
 #import <OpenGL/OpenGL.h>
 
 
+@interface MGLTestLayer ()
+{
+    GLuint vertexBuffer;
+}
+
+@end
+
 
 @implementation MGLTestLayer
 
@@ -31,13 +38,21 @@
 }
 
 
+-(void) mgl_setupContext
+{
+    if( !vertexBuffer )
+    {
+        glGenBuffers(1, &vertexBuffer);
+
+        printf("%u\n", vertexBuffer);
+    }
+}
+
+
 -(void)	drawInCGLContext: (CGLContextObj)ctx pixelFormat: (CGLPixelFormatObj)pf
 		forLayerTime: (CFTimeInterval)t displayTime: (const CVTimeStamp *)ts
 {
-    GLuint vertexBuffer;
-    glGenBuffers(1, &vertexBuffer);
-
-    printf("%u\n", vertexBuffer);
+    [self mgl_setupContext];
     
 	CGFloat		contentsScale = [self respondsToSelector: @selector(contentsScale)] ? self.contentsScale : 1.0;
 	
