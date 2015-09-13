@@ -26,6 +26,7 @@
     GLint                   _posAttrib;
     GLint                   _colorAttrib;
     GLint                   _triangleColor;
+    GLuint                  _ebo;
 }
 
 @end
@@ -83,11 +84,18 @@
         -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // Top-left
          0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // Top-right
          0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
-
-         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
-        -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, // Bottom-left
-        -0.5f,  0.5f, 1.0f, 0.0f, 0.0f  // Top-left
+        -0.5f, -0.5f, 1.0f, 1.0f, 1.0f  // Bottom-left
     };
+    
+    GLuint elements[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+    
+    glGenBuffers( 1, &_ebo );
+
+    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, _ebo );
+    glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW );
 	
     if( !_vbo )
     {
@@ -119,7 +127,7 @@
     currVal = currVal -(long)currVal;
     glUniform3f( _triangleColor, sin(currVal * M_PI), 0, 0 );
     
-    glDrawArrays( GL_TRIANGLES, 0, 6 );
+    glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
     MGLLogIfError();
 	
 	// Call super to finalize the drawing.
