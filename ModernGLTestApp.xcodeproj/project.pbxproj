@@ -12,6 +12,8 @@
 		5509A0481BA5927A000B3F1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0471BA5927A000B3F1B /* Images.xcassets */; };
 		5509A04B1BA5927A000B3F1B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5509A0491BA5927A000B3F1B /* MainMenu.xib */; };
 		5509A0571BA5927A000B3F1B /* ModernGLTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0561BA5927A000B3F1B /* ModernGLTestAppTests.m */; };
+		5509A0641BA592C1000B3F1B /* MGLTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0601BA592C1000B3F1B /* MGLTestView.m */; };
+		5509A0651BA592C1000B3F1B /* MGLTestLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5509A0621BA592C1000B3F1B /* MGLTestLayer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,10 @@
 		5509A0501BA5927A000B3F1B /* ModernGLTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModernGLTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5509A0551BA5927A000B3F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5509A0561BA5927A000B3F1B /* ModernGLTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModernGLTestAppTests.m; sourceTree = "<group>"; };
+		5509A0601BA592C1000B3F1B /* MGLTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLTestView.m; sourceTree = "<group>"; };
+		5509A0611BA592C1000B3F1B /* MGLTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTestView.h; sourceTree = "<group>"; };
+		5509A0621BA592C1000B3F1B /* MGLTestLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MGLTestLayer.mm; sourceTree = "<group>"; };
+		5509A0631BA592C1000B3F1B /* MGLTestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLTestLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,10 @@
 			children = (
 				5509A0421BA5927A000B3F1B /* AppDelegate.h */,
 				5509A0431BA5927A000B3F1B /* AppDelegate.m */,
+				5509A0601BA592C1000B3F1B /* MGLTestView.m */,
+				5509A0611BA592C1000B3F1B /* MGLTestView.h */,
+				5509A0621BA592C1000B3F1B /* MGLTestLayer.mm */,
+				5509A0631BA592C1000B3F1B /* MGLTestLayer.h */,
 				5509A0471BA5927A000B3F1B /* Images.xcassets */,
 				5509A0491BA5927A000B3F1B /* MainMenu.xib */,
 				5509A0401BA5927A000B3F1B /* Supporting Files */,
@@ -210,6 +220,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5509A0641BA592C1000B3F1B /* MGLTestView.m in Sources */,
+				5509A0651BA592C1000B3F1B /* MGLTestLayer.mm in Sources */,
 				5509A0461BA5927A000B3F1B /* main.m in Sources */,
 				5509A0441BA5927A000B3F1B /* AppDelegate.m in Sources */,
 			);
